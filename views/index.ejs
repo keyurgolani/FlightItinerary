@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+	<head>
+		<title>Flight Itinerary</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="/angularjs/itinerary.js"></script>
+	</head>
+	<body ng-app="itinerary" ng-controller="validateItinerary">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<label for"source">Select Itinerary Source: </label>
+					<select ng-model="source" id="source" class="form-control" tabindex="1" ng-options="airport.name for airport in airports | orderBy:'name'"></select>
+				</div>
+				<div class="col-md-6">
+				<label for"destination">Select Itinerary Destination: </label>
+					<select ng-model="destination" id="destination" class="form-control" tabindex="2" ng-options="airport.name for airport in airports | orderBy:'name'"></select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" align="center">
+					<button ng-model="add" class="btn btn-lg btn-primary mybutton" tabindex="3" ng-click="add();">Add Itinerary</button>
+				</div>
+			</div>
+			<div class="row error">
+				<h3>{{error}}</h3>
+			</div>
+			<div class="row">
+				<div class="row">
+					<div class="col-md-6 h2">
+						<strong>Itinerary Source</strong>
+					</div>
+					<div class="col-md-6 h2">
+						<strong>Itinerary Destination</strong>
+					</div>
+				</div>
+				<div ng-repeat="itinerary in itineraries">
+					<div class="row">
+						<div class="col-md-6 tablerow">
+							<strong>{{itinerary.source.iata}}</strong>
+							<br/>
+							{{itinerary.source.name}}&ensp;<small>{{itinerary.source.size}}</small>
+							<br/>
+							({{itinerary.source.lon}},{{itinerary.source.lat}})&ensp;<small>{{itinerary.source.type}}</small>
+						</div>
+						<div class="col-md-6 tablerow">
+							<strong>{{itinerary.destination.iata}}</strong>
+							<br/>
+							{{itinerary.destination.name}}&ensp;<small>{{itinerary.destination.size}}</small>
+							<br/>
+							({{itinerary.destination.lon}},{{itinerary.destination.lat}})&ensp;<small>{{itinerary.destination.type}}</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
