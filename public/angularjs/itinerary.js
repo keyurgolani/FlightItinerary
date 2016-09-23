@@ -22,7 +22,7 @@ itinerary.controller('validateItinerary', function($scope, $http) {
 				});
 				$scope.error = "";
 			} else {
-				$scope.error = "Source and Destination cannot be equal..!";
+				$scope.error = "Please select different Source and Destination..!";
 			}
 		}).error(function(error) {
 			//TODO: Send Error To Front
