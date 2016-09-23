@@ -1,4 +1,5 @@
-var itinerary = angular.module('itinerary', []);
+// Dependancies used: https://ghiden.github.io/angucomplete-alt/
+var itinerary = angular.module('itinerary', ["angucomplete-alt"]);
 itinerary.controller('validateItinerary', function($scope, $http) {
 	$scope.itineraries = [];
 	$http.get("https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json").then(function(response) {
@@ -11,8 +12,8 @@ itinerary.controller('validateItinerary', function($scope, $http) {
 			method : "POST",
 			url : '/checkEqual',
 			data : {
-				"source" : $scope.source.iata,
-				"destination" : $scope.destination.iata
+				"source" : $scope.source.title,
+				"destination" : $scope.destination.title
 			}
 		}).success(function(data) {
 			if(!Boolean(data.equal)) {
@@ -27,5 +28,18 @@ itinerary.controller('validateItinerary', function($scope, $http) {
 		}).error(function(error) {
 			//TODO: Send Error To Front
 		});
+	};
+	
+	$scope.searchAirports = function(str) {
+		var matches = [];
+		$scope.airports.forEach(function(airport) {
+			if(airport.name !== null && airport.name !== undefined) {
+				if ((airport.name.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
+				        (airport.iata.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0)) {
+						matches.push(airport);
+					}
+			}
+		});
+		return matches;
 	};
 });

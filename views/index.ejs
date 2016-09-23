@@ -9,6 +9,7 @@
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="/angularjs/angucomplete-alt.min.js"></script>
 		<script src="/angularjs/itinerary.js"></script>
 	</head>
 	<body ng-app="itinerary" ng-controller="validateItinerary">
@@ -16,11 +17,11 @@
 			<div class="row">
 				<div class="col-md-6">
 					<label for"source">Select Itinerary Source: </label>
-					<select ng-model="source" id="source" class="form-control" tabindex="1" ng-options="airport.name for airport in airports | orderBy:'name'"></select>
+					<angucomplete-alt id="source" placeholder="Search Sources" pause="1000" selected-object="source" local-data="airports" local-search="searchAirports" title-field="iata" description-field="name" minlength="1" input-class="form-control form-control-small" match-class="highlight" />
 				</div>
 				<div class="col-md-6">
 				<label for"destination">Select Itinerary Destination: </label>
-					<select ng-model="destination" id="destination" class="form-control" tabindex="2" ng-options="airport.name for airport in airports | orderBy:'name'"></select>
+					<angucomplete-alt id="destination" placeholder="Search destinations" pause="1000" selected-object="destination" local-data="airports" local-search="searchAirports" title-field="iata" description-field="name" minlength="1" input-class="form-control form-control-small" match-class="highlight" />
 				</div>
 			</div>
 			<div class="row">
@@ -43,18 +44,14 @@
 				<div ng-repeat="itinerary in itineraries">
 					<div class="row">
 						<div class="col-md-6 tablerow">
-							<strong>{{itinerary.source.iata}}</strong>
+							<strong>{{itinerary.source.title}}</strong>
 							<br/>
-							{{itinerary.source.name}}&ensp;<small>{{itinerary.source.size}}</small>
-							<br/>
-							({{itinerary.source.lon}},{{itinerary.source.lat}})&ensp;<small>{{itinerary.source.type}}</small>
+							{{itinerary.source.description}}
 						</div>
 						<div class="col-md-6 tablerow">
-							<strong>{{itinerary.destination.iata}}</strong>
+							<strong>{{itinerary.destination.title}}</strong>
 							<br/>
-							{{itinerary.destination.name}}&ensp;<small>{{itinerary.destination.size}}</small>
-							<br/>
-							({{itinerary.destination.lon}},{{itinerary.destination.lat}})&ensp;<small>{{itinerary.destination.type}}</small>
+							{{itinerary.destination.description}}
 						</div>
 					</div>
 				</div>
