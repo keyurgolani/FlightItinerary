@@ -2,7 +2,7 @@
 var itinerary = angular.module('itinerary', ["angucomplete-alt"]);
 itinerary.controller('validateItinerary', function($scope, $http) {
 	$scope.itineraries = [];
-	$http.get("https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json").then(function(response) {
+	$http.get("https://raw.githubusercontent.com/keyurgolani/JSON-Airports/master/airports.json").then(function(response) {
 		$scope.airports = response.data;
 	});
 	$scope.add = function() {
