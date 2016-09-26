@@ -15,40 +15,49 @@
 	<body ng-app="itinerary" ng-controller="validateItinerary">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-xs-6">
 					<label for"source">Select Itinerary Source: </label>
-					<angucomplete-alt id="source" placeholder="Search Sources" pause="1000" selected-object="source" local-data="airports" local-search="searchAirports" title-field="iata" description-field="name" minlength="1" input-class="form-control form-control-small" match-class="highlight" />
+					<angucomplete-alt id="source" placeholder="Search Sources" pause="1000" selected-object="source" local-data="airports" local-search="searchAirports" title-field="iata" description-field="name" minlength="1" input-class="form-control form-control-xsall" match-class="highlight" />
 				</div>
-				<div class="col-md-6">
+				<div class="col-xs-6">
 				<label for"destination">Select Itinerary Destination: </label>
-					<angucomplete-alt id="destination" placeholder="Search destinations" pause="1000" selected-object="destination" local-data="airports" local-search="searchAirports" title-field="iata" description-field="name" minlength="1" input-class="form-control form-control-small" match-class="highlight" />
+					<angucomplete-alt id="destination" placeholder="Search destinations" pause="1000" selected-object="destination" local-data="airports" local-search="searchAirports" title-field="iata" description-field="name" minlength="1" input-class="form-control form-control-xsall" match-class="highlight" />
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12" align="center">
+				<div class="col-xs-12" align="center">
 					<button class="btn btn-lg btn-primary mybutton" tabindex="3" ng-click="add();">Add Itinerary</button>
 				</div>
 			</div>
-			<div class="row error">
-				<h3>{{error}}</h3>
+			<br/>
+			<br/>
+			<br/>
+			<div class="row alert alert-danger" ng-show="error">
+				{{error}}
 			</div>
 			<div class="row">
 				<div class="row">
-					<div class="col-md-6 h2">
+					<div class="col-xs-5 h2">
 						<strong>Itinerary Source</strong>
 					</div>
-					<div class="col-md-6 h2">
+					<div class="col-xs-2 plane-symbol">
+							&#9992;
+						</div>
+					<div class="col-xs-5 h2">
 						<strong>Itinerary Destination</strong>
 					</div>
 				</div>
 				<div ng-repeat="itinerary in itineraries">
 					<div class="row">
-						<div class="col-md-6 tablerow">
+						<div class="col-xs-5 tablerow">
 							<strong>{{itinerary.source.title}}</strong>
 							<br/>
 							{{itinerary.source.description}}
 						</div>
-						<div class="col-md-6 tablerow">
+						<div class="col-xs-2 plane-symbol">
+							&#9992;
+						</div>
+						<div class="col-xs-5 tablerow">
 							<strong>{{itinerary.destination.title}}</strong>
 							<br/>
 							{{itinerary.destination.description}}
