@@ -23,5 +23,9 @@ a {
 
 .plane-symbol {
 	text-align: center;
-	font-size: 400%;
+	font-size: 300%;
+}
+
+.heading {
+	text-align: center;
 }
